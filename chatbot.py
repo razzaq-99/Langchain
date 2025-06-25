@@ -5,6 +5,8 @@ from langchain.chains import LLMChain
 from dotenv import load_dotenv
 import os
 
+os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
+os.environ["LANGCHAIN_API_KEY"]="true"
 
 load_dotenv()
 groq_api_key = os.getenv("GROQ_API_KEY")
@@ -25,11 +27,11 @@ st.markdown("Ask anything!")
 prompt = PromptTemplate.from_template("Q: {question} \nA:")
 
 
-chain = LLMChain(llm=llm, prompt=prompt)
+chain = prompt | llm
 
 
 user_input = st.text_input("Ask a question:")
 
 if user_input:
     response = chain.invoke({"question": user_input})
-    st.write("Answer: ", response["text"])
+    st.write("Answer: ", response.content)
