@@ -6,3 +6,6 @@ streamlit
 langchain_community
 langserve
 langchain-groq
+fastapi
+uvicorn
+sse_starlette
