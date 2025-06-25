@@ -2,7 +2,10 @@ import streamlit as st
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain_community.llms import ollama
+import os
 
+os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
+os.environ["LANGCHAIN_API_KEY"]="true"
 
 llm = ollama.Ollama(
     model="llama2"  )
