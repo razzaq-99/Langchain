@@ -9,3 +9,6 @@ langchain-groq
 fastapi
 uvicorn
 sse_starlette
+bs4
+pypdf
+faiss-cpu
