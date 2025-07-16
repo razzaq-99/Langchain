@@ -9,15 +9,15 @@ from langchain_community.vectorstores import Chroma
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import Tool
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_ollama import ChatOllama , OllamaEmbeddings
 
 
 load_dotenv()
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-db_dir = os.path.join(current_dir, "..", "..", "vector_store", "utils")
-persistent_directory = os.path.join(db_dir, "chroma_db_with_metadata")
+db_dir = os.path.join(current_dir, "..", "..", "RAG", "utils")
+persistent_directory = os.path.join(db_dir, "chroma_db")
 
 if os.path.exists(persistent_directory):
     print("Loading existing vector store...")
@@ -28,7 +28,7 @@ else:
         f"The directory {persistent_directory} does not exist. Please check the path."
     )
 
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+embeddings = OllamaEmbeddings(model="gemma:2b")
 
 
 db = Chroma(persist_directory=persistent_directory,
@@ -40,7 +40,7 @@ retriever = db.as_retriever(
 )
 
 
-llm = ChatOpenAI(model="gpt-4o")
+llm = ChatOllama(model="gemma:2b")
 
 
 contextualize_q_system_prompt = (

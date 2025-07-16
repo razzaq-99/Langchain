@@ -19,7 +19,7 @@ def get_current_time():
 
 tools = [
     Tool(
-        name="get_current_time",
+        name="Time",
         func=get_current_time,
         description="Useful when you want to get the current time"
     )
