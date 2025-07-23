@@ -1,0 +1,13 @@
+{
+    "title" : "Students",
+    "description": "A schema for student records",
+    "type": "object",
+    "properties": {
+        "name":"string",
+        "age": "integer",
+        "cgpa":"float",
+        "dept" : "string",
+        "email" : "string"
+    },
+    "required":["email"]
+}
